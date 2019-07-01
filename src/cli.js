@@ -29,7 +29,7 @@ async function CLI () {
      .option ( '--tag <tag>', 'Tag to add to all notes', app.REPEATABLE )
      .option ( '--no-attachments', 'Don\'t dump attachments' )
      .option ( '--no-notes', 'Don\'t dump notes' )
-     .option ( '--no-metadata', 'Don\'t add metatada to notes' )
+     .option ( '--no-metadata', 'Don\'t add metadata to notes' )
      .action ( () => EnexDump () );
 
   /* HELP */
