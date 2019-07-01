@@ -20,11 +20,13 @@ const Dump = {
     return await Promise.all ( _.castArray ( xml['en-export'].note ).map ( async note => {
 
       const title = Parse.title ( note.title || 'Untitled' ),
-            created = note.created ? Parse.date ( note.created ) : new Date ();
+            created = note.created ? Parse.date ( note.created ) : new Date (),
+            sourceUrl = Config.dump.sourceUrl && note['note-attributes'] ? note['note-attributes']['source-url'] : undefined;
 
       return {
         title,
-        content: await Parse.content ( note.content || '', title ),
+        content: await Parse.content ( note.content || '', title, sourceUrl ),
+        sourceUrl,
         created,
         modified: note.updated ? Parse.date ( note.updated ) : created,
         tags: _.castArray ( note.tag || [] ),

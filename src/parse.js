@@ -32,9 +32,9 @@ const Parse = {
 
   },
 
-  async content ( content, title ) { // From the HTML-ish format
+  async content ( content, title, sourceUrl ) { // From the HTML-ish format
 
-    return await Content.format[Config.dump.format]( content, title );
+    return await Content.format[Config.dump.format]( content, title, sourceUrl );
 
   },
 

@@ -30,6 +30,7 @@ async function CLI () {
      .option ( '--no-attachments', 'Don\'t dump attachments' )
      .option ( '--no-notes', 'Don\'t dump notes' )
      .option ( '--no-metadata', 'Don\'t add metadata to notes' )
+     .option ( '--no-source-url', 'Don\'t add source URLs to notes' )
      .action ( () => EnexDump () );
 
   /* HELP */

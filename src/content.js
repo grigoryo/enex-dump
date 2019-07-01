@@ -13,7 +13,7 @@ const Content = {
 
   format: {
 
-    html ( html, title, beautify = true ) {
+    html ( html, title, sourceUrl, beautify = true ) {
 
       html = html.replace ( /<!DOCTYPE(.*?)>/g, '' ) // Remove doctype
                  .replace ( /<\?xml(.*?)>/g, '' ) // Remove xml thing (what's it called?)
@@ -27,6 +27,10 @@ const Content = {
         html = `<h1>${title}</h1>${html}`;
       }
 
+      if ( sourceUrl ) {
+        html = `${html}<div><hr /></div><div>Source: <a href="${sourceUrl}">${sourceUrl}</a></div>`;
+      }
+
       if ( beautify ) {
         html = beautifyHTML ( html );
       }
@@ -36,9 +40,9 @@ const Content = {
 
     },
 
-    async markdown ( html, title ) {
+    async markdown ( html, title, sourceUrl ) {
 
-      html = Content.format.html ( html, title, false );
+      html = Content.format.html ( html, title, sourceUrl, false );
 
       html = html.replace ( /<input(.*?)type="checkbox"([^>]*?)checked(.*?)>/g, ' [x] ' ) // Replace checked checkbox
                  .replace ( /<input(.*?)type="checkbox"(.*?)>/g, ' [ ] ' ); // Replace unchecked checkbox
